@@ -1,0 +1,74 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		65F433261C5A46F700DDE2FD /* Fractal.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fractal.sks; sourceTree = "<group>"; };
+		65F433271C5A470E00DDE2FD /* Fractal.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Fractal.fsh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		65F4331F1C5A46A900DDE2FD = {
+			isa = PBXGroup;
+			children = (
+				65F433271C5A470E00DDE2FD /* Fractal.fsh */,
+				65F433261C5A46F700DDE2FD /* Fractal.sks */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		65F433201C5A46A900DDE2FD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+			};
+			buildConfigurationList = 65F433231C5A46A900DDE2FD /* Build configuration list for PBXProject "Bilious-octo-chainsaw" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 65F4331F1C5A46A900DDE2FD;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		65F433241C5A46A900DDE2FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		65F433251C5A46A900DDE2FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65F433231C5A46A900DDE2FD /* Build configuration list for PBXProject "Bilious-octo-chainsaw" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65F433241C5A46A900DDE2FD /* Debug */,
+				65F433251C5A46A900DDE2FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65F433201C5A46A900DDE2FD /* Project object */;
+}

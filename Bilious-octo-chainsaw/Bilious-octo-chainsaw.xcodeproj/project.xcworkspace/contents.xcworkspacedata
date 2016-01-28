@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:FractionalGraphPlayground.xcodeproj">
+      location = "self:Bilious-octo-chainsaw.xcodeproj">
    </FileRef>
 </Workspace>
