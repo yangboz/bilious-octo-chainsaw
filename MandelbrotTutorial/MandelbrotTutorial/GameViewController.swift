@@ -25,13 +25,16 @@ extension SKNode {
     }
 }
 
-class GameViewController: UIViewController {
-
+class GameViewController: UIViewController, UIScrollViewDelegate {
+    
     var node:SKSpriteNode!
+    
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
             let skView = self.view as! SKView
@@ -43,11 +46,46 @@ class GameViewController: UIViewController {
             node = scene.childNodeWithName("fractal") as! SKSpriteNode
             
             skView.presentScene(scene)
+            
         }
+        
+        updateShader(scrollView)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        updateShader(scrollView)
+    }
+    
+    func updateShader(scrollView: UIScrollView) {
+        let zoomUniform = node.shader!.uniformNamed("zoom")!
+        
+        let offsetUniform = node.shader!.uniformNamed("offset")!
+        
+        var offset = scrollView.contentOffset
+        
+        offset.x /= scrollView.contentSize.width
+        offset.y /= scrollView.contentSize.height
+        
+        zoomUniform.floatValue = Float(scrollView.zoomScale)
+        offsetUniform.floatVector2Value = GLKVector2Make(Float(offset.x), Float(offset.y))
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        updateShader(scrollView)
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        updateShader(scrollView)
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return contentView
     }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-
+    
 }
