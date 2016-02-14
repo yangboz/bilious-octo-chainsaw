@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+//let DEBUG=true
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -47,6 +48,8 @@ class GameViewController: UIViewController, UIScrollViewDelegate {
             
             skView.presentScene(scene)
             
+            self.scrollView.delegate = self
+            self.contentView.translatesAutoresizingMaskIntoConstraints = true
         }
         
         updateShader(scrollView)
@@ -54,7 +57,7 @@ class GameViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+//        scrollView.contentSize = CGSizeMake(400,2300)
         updateShader(scrollView)
     }
     
@@ -70,6 +73,8 @@ class GameViewController: UIViewController, UIScrollViewDelegate {
         
         zoomUniform.floatValue = Float(scrollView.zoomScale)
         offsetUniform.floatVector2Value = GLKVector2Make(Float(offset.x), Float(offset.y))
+        Log.msg("zoomUniform:"+zoomUniform.floatValue.description)
+        Log.msg("offsetUniform:"+offsetUniform.description)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -88,4 +93,26 @@ class GameViewController: UIViewController, UIScrollViewDelegate {
         return true
     }
     
+}
+
+class Log {
+    class func msg(message: String,
+        functionName:  String = __FUNCTION__, fileNameWithPath: String = __FILE__, lineNumber: Int = __LINE__ ) {
+            // In the default arguments to this function:
+            // 1) If I use a String type, the macros (e.g., __LINE__) don't expand at run time.
+            //  "\(__FUNCTION__)\(__FILE__)\(__LINE__)"
+            // 2) A tuple type, like,
+            // typealias SMLogFuncDetails = (String, String, Int)
+            //  SMLogFuncDetails = (__FUNCTION__, __FILE__, __LINE__)
+            //  doesn't work either.
+            // 3) This String = __FUNCTION__ + __FILE__
+            //  also doesn't work.
+            
+            let fileNameWithoutPath = fileNameWithPath
+            
+//            #if DEBUG
+                let output = "\(NSDate()): \(message) [\(functionName) in \(fileNameWithoutPath), line \(lineNumber)]"
+                print(output)
+//            #endif
+    }
 }

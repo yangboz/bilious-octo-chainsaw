@@ -1,14 +1,17 @@
 void main() {
-#define iterations 200
+#define iterations 128
+    
     vec2 position = v_tex_coord; // gets the location of the current pixel in the intervals [0..1] [0..1]
-    vec3 color = vec3(0.0,0.0,0.0); // initialize color to black
     
-    vec2 z = position; // z.x is the real component z.y is the imaginary component
+    position.y = 1.0 - position.y;
     
+    vec2 z = offset + position / zoom;
     
-    // Rescale the position to the intervals [-2,1] [-1,1]
-    z *= vec2(3.0,2.0);
-    z -= vec2(2.0,1.0);
+    z *= 2.0;
+    z -= vec2(1.5,1.0);
+    
+    float aspectRatio = u_sprite_size.x / u_sprite_size.y;
+    z.x *= aspectRatio;
     
     vec2 c = z;
     
@@ -26,6 +29,8 @@ void main() {
         
         it += 1.0;
     }
+    
+    vec3 color = vec3(0.0,0.0,0.0); // initialize color to black
     
     if (it < float(iterations)) {
         color.x = sin(it / 3.0);
